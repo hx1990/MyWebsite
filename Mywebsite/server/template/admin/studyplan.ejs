@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style media="screen">
+      h2 { text-align: center}
+    .shadow {position:fixed; width:100%; height:100%; background:#000; opacity:0.3; filter:alpha(opacity:30); left:0; top: 0;}
+    .mod_dialog {width:400px; height:400px; border:1px solid black; background:#fff; position:fixed; left:50%; top:50%; margin-left:-200px; margin-top:-200px}
+    .top-wrap a {padding:20px; background:#ccc ; text-decoration: none}
+    .top-wrap a:hover { background:yellow; text-decoration: none}
+    .content-wrap { margin-top: 50px;}
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div class="page">
+      <% include components/top.inc.ejs %>
+      <div class="content-wrap">
+        <div>
+          <h5>添加一条数据</h5>
+          <form action="?" method="post" >
+            开始时间：<input type="text" name="starttime" /><br>
+            项目名称：<input type="text" name="project" /><br>
+            类容：<textarea type="text" name="content" ></textarea><br>
+            项目进度：<input type="text" name="progress" /><br>
+            遇到问题和解决方案：<textarea type="text" name="trouble"></textarea><br>
+            结束时间：<input type="text" name="endtime" /><br>
+            评分：<input type="text" name="star" /><br>
+            <input type="submit" value="添加"/>
+          </form>
+        </div>
+        <table border="1" width="100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>开始时间</th>
+              <th>项目名称</th>
+              <th>类容</th>
+              <th>项目进度</th>
+              <th>遇到问题和解决方案</th>
+              <th>结束时间</th>
+              <th>评分</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0;i<sport.length;i++){ %>
+            <tr>
+              <td><%=sport[i].ID%></td>
+              <td><%=sport[i].starttime%></td>
+              <td><%=sport[i].project%></td>
+              <td><%=sport[i].content%></td>
+              <td><%=sport[i].progress%></td>
+              <td><%=sport[i].trouble%></td>
+              <td><%=sport[i].endtime%></td>
+              <td><%=sport[i].star%></td> 
+              <td>
+                <a href="?act=mod&id=<%=sport[i].ID%>">修改</a>
+                <a href="?act=del&id=<%=sport[i].ID%>" onclick="return confirm('你真的要删吗？')">删除</a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% if(typeof mod_data!='undefined'){ %>
+        <div class="shadow"></div>
+        <div class="mod_dialog">
+          <h5>修改数据</h5>
+          <form action="?" method="post" >
+            <input type="hidden" name="mod_id" value="<%= mod_data.ID %>" />
+            开始时间：<input type="text" name="starttime" value="<%= mod_data.starttime %>"/><br>
+            项目名称：<input type="text" name="project" value="<%= mod_data.project %>"/><br>
+            类容：<textarea type="text" name="content" ><%= mod_data.content %></textarea><br>
+            项目进度：<input type="text" name="progress" value="<%= mod_data.progress %>"/><br>
+            遇到问题和解决方案：<textarea type="text" name="trouble"><%= mod_data.trouble %></textarea><br>
+            结束时间：<input type="text" name="endtime" value="<%= mod_data.endtime %>"/><br>
+            评分：<input type="text" name="star" value="<%= mod_data.star %>"/><br>
+            <input type="submit" value="修改"/>
+            <a href="/admin/study">取消修改</a>
+          </form>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,44 @@
+{
+  "name": "mywebsite",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "huangxing <742235410@qq.com>",
+  "private": true,
+  "scripts": {
+    "server": "node ./server/server.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot --inline",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot --inline",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "vue": "^2.3.4"
+  },
+  "devDependencies": {
+    "axios": "^0.16.2",
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-env": "^1.5.1",
+    "body-parser": "^1.17.2",
+    "consolidate": "^0.14.5",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.2",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "echarts": "^3.6.2",
+    "ejs": "^2.5.5",
+    "element-ui": "^1.3.6",
+    "express": "^4.14.0",
+    "express-route": "^0.1.4",
+    "express-static": "^1.1.0",
+    "file-loader": "^0.9.0",
+    "multer": "^1.3.0",
+    "mysql": "^2.13.0",
+    "style-loader": "^0.18.2",
+    "vue-loader": "^12.1.0",
+    "vue-resource": "^1.3.4",
+    "vue-router": "^2.5.3",
+    "vue-template-compiler": "^2.3.3",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  }
+}

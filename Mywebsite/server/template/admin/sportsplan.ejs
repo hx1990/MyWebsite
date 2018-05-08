@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style media="screen">
+      h2 { text-align: center}
+    .shadow {position:fixed; width:100%; height:100%; background:#000; opacity:0.3; filter:alpha(opacity:30); left:0; top: 0;}
+    .mod_dialog {width:400px; height:400px; border:1px solid black; background:#fff; position:fixed; left:50%; top:50%; margin-left:-200px; margin-top:-200px}
+    .top-wrap a {padding:20px; background:#ccc ; text-decoration: none}
+    .top-wrap a:hover { background:yellow; text-decoration: none}
+    .content-wrap { margin-top: 50px;}
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div class="page">
+      <% include components/top.inc.ejs %>
+      <div class="content-wrap">
+        <div>
+          <h5>添加一条数据</h5>
+          <form action="?" method="post" >
+            时间：<input type="text" name="date" /><br>
+            运动项目：<input type="text" name="project" /><br>
+            运动时间：<input type="text" name="s_time" /><br>
+            运动距离：<input type="text" name="distance" /><br>
+            天气：<input type="text" name="weather" /><br>
+            备注：<input type="text" name="remark" /><br>
+            体重：<input type="text" name="weigth" /><br>
+            起床时间：<input type="text" name="up_time" /><br>
+            睡觉时间：<input type="text" name="down_time" /><br>
+            评分：<input type="text" name="star" /><br>
+            <input type="submit" value="添加"/>
+          </form>
+        </div>
+        <table border="1" width="100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>时间</th>
+              <th>运动项目</th>
+              <th>运动时间</th>
+              <th>运动距离</th>
+              <th>天气</th>
+              <th>备注</th>
+              <th>体重</th>
+              <th>起床时间</th>
+              <th>睡觉时间</th>
+              <th>评分</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0;i<sport.length;i++){ %>
+            <tr>
+              <td><%=sport[i].ID%></td>
+              <td><%=sport[i].date%></td>
+              <td><%=sport[i].project%></td>
+              <td><%=sport[i].s_time%></td>
+              <td><%=sport[i].distance%></td>
+              <td><%=sport[i].weather%></td>
+              <td><%=sport[i].remark%></td>
+              <td><%=sport[i].weigth%></td>
+              <td><%=sport[i].up_time%></td>
+              <td><%=sport[i].down_time%></td>
+              <td><%=sport[i].star%></td> 
+              <td>
+                <a href="?act=mod&id=<%=sport[i].ID%>">修改</a>
+                <a href="?act=del&id=<%=sport[i].ID%>" onclick="return confirm('你真的要删吗？')">删除</a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% if(typeof mod_data!='undefined'){ %>
+        <div class="shadow"></div>
+        <div class="mod_dialog">
+          <h5>修改数据</h5>
+          <form action="?" method="post" >
+            <input type="hidden" name="mod_id" value="<%= mod_data.ID %>" />
+            时间：<input type="text" name="date" value="<%= mod_data.date %>"/><br>
+            运动项目：<input type="text" name="project" value="<%= mod_data.project %>"/><br>
+            运动时间：<input type="text" name="s_time" value="<%= mod_data.s_time %>"/><br>
+            运动距离：<input type="text" name="distance" value="<%= mod_data.distance %>"/><br>
+            天气：<input type="text" name="weather" value="<%= mod_data.weather %>"/><br>
+            备注：<input type="text" name="remark" value="<%= mod_data.remark %>"/><br>
+            体重：<input type="text" name="weigth" value="<%= mod_data.weigth %>"/><br>
+            起床时间：<input type="text" name="up_time" value="<%= mod_data.up_time %>"/><br>
+            睡觉时间：<input type="text" name="down_time" value="<%= mod_data.down_time %>"/><br>
+            评分：<input type="text" name="star" value="<%= mod_data.star %>"/><br>
+            <input type="submit" value="修改"/>
+            <a href="/admin/sport">取消修改</a>
+          </form>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
+
